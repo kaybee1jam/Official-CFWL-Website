@@ -311,6 +311,9 @@ form input[type=submit] {
     background-color: #DE6515;
     color: #fff; }
 
+form input[type=tel] {
+  width: 25%; }
+
 /*********************
 *FOOTER
 *********************/
@@ -343,7 +346,7 @@ footer {
 *REDIRECT PAGE
 *********************/
 .thank-you {
-  height: 500px;
+  height: 550px;
   padding: 150px 0; }
   .thank-you h1, .thank-you p {
     text-align: center; }
@@ -478,7 +481,9 @@ footer {
   .thank-you h1 {
     font-size: 1.9em; }
   .thank-you p {
-    font-size: 1.2em; } }
+    font-size: 1.2em; }
+  form input[type=tel] {
+    width: 28%; } }
 
 @media screen and (max-width: 550px) {
   .side-heading h2 {
@@ -500,7 +505,9 @@ footer {
     margin: 0 auto;
     width: 100px;
     text-align: center;
-    float: none; } }
+    float: none; }
+  form input[type=tel] {
+    width: 40%; } }
 
 @media screen and (max-width: 416px) {
   #brand {

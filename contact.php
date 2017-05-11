@@ -56,7 +56,9 @@
                 //Get user input
                 $name = $_POST['name'];
                 $email = $_POST['email'];
-                $phone = $_POST['phone-number'];
+                $areaCode = $_POST['area-code'];
+                $phonePart1 = $_POST['phone-part1'];
+                $phonePart2 = $_POST['phone-part2'];
                 $response = $_POST['response-method'];
 
                 //error messages
@@ -90,13 +92,29 @@
                   }
 
                   //Validate phone number input
-                  if (!$phone) {
+                  if (!$areaCode) {
                     $errors .= $missingTelephone;
                   } else {
-                    $message = filter_var($phone, FILTER_SANITIZE_NUMBER_INT);
-                    // if( !is_numeric($phone) ) { //if phone number input does not have all numbers
-                    //   $errors .= $invalidTelephone;
-                    // }
+                    $message = filter_var($areaCode, FILTER_SANITIZE_NUMBER_INT);
+                    if( !is_numeric($areaCode) ) { //if phone number input does not have all numbers
+                      $errors .= $invalidTelephone;
+                    }
+                  }
+                  if (!$phonePart1) {
+                    $errors .= $missingTelephone;
+                  } else {
+                    $message = filter_var($phonePart1, FILTER_SANITIZE_NUMBER_INT);
+                    if( !is_numeric($phonePart1) ) { //if phone number input does not have all numbers
+                      $errors .= $invalidTelephone;
+                    }
+                  }
+                  if (!$phonePart2) {
+                    $errors .= $missingTelephone;
+                  } else {
+                    $message = filter_var($phonePart2, FILTER_SANITIZE_NUMBER_INT);
+                    if( !is_numeric($phonePart2) ) { //if phone number input does not have all numbers
+                      $errors .= $invalidTelephone;
+                    }
                   }
 
                   //Validate response radios
@@ -122,7 +140,7 @@
                                     <h1 style='color: orange; border: 1px solid #ddd;'>Central Florida Wildlife Removal Contact Form Submission</h1>
                                     <p><strong>$name</strong>, has submitted a quote request.</p>
                                     <p>Email address: <strong>$from</strong></p>
-                                    <p>Phone number: <strong>$phone</strong></p>
+                                    <p>Phone number: <strong>$areaCode-$phonePart1-$phonePart2</strong></p>
                                     <p>Response method chosen: <strong>$response</strong></p>
                                   </body>
                                   </html>
@@ -160,7 +178,9 @@
                 <label for="email">Email:</label><span class="error">*</span><br>
                 <input type="email" name="email" id="email" placeholder="Email Address" value="<?php echo $_POST['email']; ?>"><br>
                 <label for="phone-number">Phone Number:</label><span class="error">*</span><br>
-                <input type="tel" name="phone-number" id="phone-number" placeholder="XXX-XXX-XXXX" value="<?php echo $_POST['phone-number']; ?>"><br>
+                <input type="tel" name="area-code" id="phone-number" placeholder="XXX" value="<?php echo $_POST['area-code']; ?>" maxlength="3"> -
+                <input type="tel" name="phone-part1" placeholder="XXX" value="<?php echo $_POST['phone-part1']; ?>" maxlength="3"> -
+                <input type="tel" name="phone-part2" placeholder="XXXX" value="<?php echo $_POST['phone-part2']; ?>" maxlength="4"><br>
 
                 <!-- Response options -->
                 <label for="response-method">Choose preferred respond type:</label><span class="error">*</span><br>

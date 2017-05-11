@@ -365,6 +365,9 @@ form {
       color: #fff;
     }
   }
+  input[type=tel] {
+    width: 25%;
+  }
 }
 
 /*********************
@@ -405,7 +408,7 @@ footer {
 *REDIRECT PAGE
 *********************/
 .thank-you {
-  height: 500px;
+  height: 550px;
   padding: 150px 0;
   h1, p {
     text-align: center;
@@ -635,7 +638,11 @@ footer {
       font-size: 1.2em;
     }
   }
-
+  form {
+    input[type=tel] {
+      width: 28%;
+    }
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -672,6 +679,11 @@ footer {
     width: 100px;
     text-align: center;
     float: none;
+  }
+  form {
+    input[type=tel] {
+      width: 40%;
+    }
   }
 }
 

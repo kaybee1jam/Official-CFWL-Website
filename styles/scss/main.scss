@@ -117,10 +117,11 @@ a {
   h2 {
     color: $defaultFontColor;
     border: none;
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: 300;
     text-transform: uppercase;
     line-height: 1.5em;
+    width: 400px;
   }
   // Get estimate button
   a {
@@ -128,7 +129,7 @@ a {
     text-align: center;
     display: block;
     font-size: 1.5em;
-    background-color: #0D8E75;
+    background-color: $accentTealColor;
     border: 1px solid $subHeadingsColor;
     border-radius: 5px;
     padding: .5em 0;
@@ -222,7 +223,7 @@ a {
     color: $subHeadingsColor;
     border-color: $subHeadingsColor;
     &:hover {
-      color: #0D8E75;
+      color: $accentTealColor;
     }
   }
 }
@@ -235,7 +236,7 @@ a {
   }
   h3 {
     color: $subHeadingsColor;
-    border-bottom: .5px solid #0D8E75;
+    border-bottom: .5px solid $accentTealColor;
     padding-bottom: 5px;
   }
   padding: 0;
@@ -655,6 +656,13 @@ footer {
   #brand {
     width: 300px;
   }
+
+  .side-heading {
+    h2 {
+      font-size: 1.4em;
+      width: 300px;
+    }
+  }
 }
 
 @media screen and (max-width: 365px) {
@@ -662,6 +670,12 @@ footer {
   #brand {
     width: 250px;
   }
+  .side-heading {
+    h2 {
+      width: 250px;
+    }
+  }
+
   footer {
     li {
       padding: 0 8px;

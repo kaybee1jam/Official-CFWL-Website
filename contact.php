@@ -52,14 +52,8 @@
 
               <!-- FORM VALIDAION -->
               <?php
-
-                //Get user input
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $areaCode = $_POST['area-code'];
-                $phonePart1 = $_POST['phone-part1'];
-                $phonePart2 = $_POST['phone-part2'];
-                $response = $_POST['response-method'];
+                $errors = "";
+                $resultsMessage = "";
 
                 //error messages
                 $missingName = "<p><strong>Please enter your name!</strong></p>";
@@ -67,63 +61,86 @@
                 $invalidEmail = "<p><strong>Please enter a valid email address!</strong></p>";
                 $missingMessage = "<p><strong>Please enter a message!</strong></p>";
                 $missingTelephone = "<p><strong>Please enter your phone number!</strong></p>";
+                $missingAreaCode = "<p><strong>Please enter your area code!</strong></p>";
                 $invalidTelephone = "<p><strong>Please enter a valid phone number!</strong></p>";
+                $invalidAreaCode = "<p><strong>Please enter a valid area code!</strong></p>";
                 $missingResponse = "<p><strong>Please choose a response type!</strong></p>";
 
                 //Check if the user has submitted the form
-                if ($_POST['submit']) {
+                if ( isset($_POST['submit']) ) {
 
-                  //Check if there are any errors
-                  //validate name input
-                  if (!$name) {
-                    $errors .= $missingName;
-                  } else {
+                  // Check if there are any errors
+                  // validate name input
+                  if (!empty($_POST['name'])) {
+                    $name = $_POST['name'];
                     $name = filter_var($name, FILTER_SANITIZE_STRING);
+                  } else {
+                    $name = NULL;
+                    $errors .= $missingName;
                   }
 
-                  //Validate email input
-                  if (!$email) {
-                    $errors .= $missingEmail;
-                  } else {
+                  // validate email input
+                  if (!empty($_POST['email'])) {
+                    $email = isset($_POST['email']);
                     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-                    if ( !filter_var($email, FILTER_SANITIZE_EMAIL) ) { //if email not valid
-                      $errors .= $invalidEmail;
-                    }
+                  } else {
+                    $email = NULL;
+                    $errors .= $missingEmail;
                   }
 
-                  //Validate phone number input
-                  if (!$areaCode) {
-                    $errors .= $missingTelephone;
-                  } else {
-                    $message = filter_var($areaCode, FILTER_SANITIZE_NUMBER_INT);
-                    if( !is_numeric($areaCode) ) { //if phone number input does not have all numbers
-                      $errors .= $invalidTelephone;
+                  // validate area code in phone number
+                  if (!empty($_POST['area-code'])) {
+                    $areaCode = $_POST['area-code'];
+
+                    if ( !is_numeric($areaCode) ) { //Make sure only numbers are entered, if not show error
+                      $errors .= $invalidAreaCode;
+                    } else {
+                      $areaCode = filter_var($areaCode, FILTER_SANITIZE_NUMBER_INT);
                     }
-                  }
-                  if (!$phonePart1) {
-                    $errors .= $missingTelephone;
+
                   } else {
-                    $message = filter_var($phonePart1, FILTER_SANITIZE_NUMBER_INT);
-                    if( !is_numeric($phonePart1) ) { //if phone number input does not have all numbers
-                      $errors .= $invalidTelephone;
-                    }
-                  }
-                  if (!$phonePart2) {
-                    $errors .= $missingTelephone;
-                  } else {
-                    $message = filter_var($phonePart2, FILTER_SANITIZE_NUMBER_INT);
-                    if( !is_numeric($phonePart2) ) { //if phone number input does not have all numbers
-                      $errors .= $invalidTelephone;
-                    }
+                    $areaCode = NULL;
+                    $errors .= $missingAreaCode;
                   }
 
-                  //Validate response radios
-                  if (!$response) {
+                  // validate part 1 of phone number
+                  if (!empty($_POST['phone-part1'])) {
+                    $phonePart1 = $_POST['phone-part1'];
+
+                    if (!is_numeric($phonePart1)) { //Make sure only numbers are entered, if not show error
+                      $errors .= $invalidTelephone;
+                    } else {
+                      $phonePart1 = filter_var($phonePart1, FILTER_SANITIZE_NUMBER_INT);
+                    }
+
+                  } else {
+                    $phonePart1 = NULL;
+                    $errors .= $missingTelephone;
+                  }
+
+                  // validate part 2 of phone number
+                  if (!empty($_POST['phone-part2'])) {
+                    $phonePart2 = $_POST['phone-part2'];
+
+                    if (!is_numeric($phonePart2)) { //Make sure only numbers are entered, if not show error
+                      $errors .= $invalidTelephone;
+                    } else {
+                      $phonePart2 = filter_var($phonePart2, FILTER_SANITIZE_NUMBER_INT);
+                    }
+
+                  } else {
+                    $phonePart2 = NULL;
+                    $errors .= $missingTelephone;
+                  }
+
+                  //Validate response radio boxes
+                  if (isset($_POST['response-method'])) {
+                    $response = $_POST['response-method'];
+                  } else {
+                    $response = NULL;
                     $errors .= $missingResponse;
-                  } else {
-                    $message = filter_var($response, FILTER_SANITIZE_STRING);
                   }
-
+                  
                     //If there are errors
                     if ($errors) {
                       #print error message
@@ -156,7 +173,6 @@
 
                       //if success redirect user to thank you page print succes message
                       if ( mail($to, $subject, $message, $headers) ) {
-                        // $resultsMessage = "<div class='alert alert-success'>Thank you for your submission! Someone will contact you within the next 24 to 48 hours.</div>";
                         header("Location: redirect.html");
                       } else {
                         //if not successfull print warning message
@@ -174,13 +190,13 @@
                 <p class="error" style="padding-bottom: 10px;">* required field</p>
                 <!-- Text inputs -->
                 <label for="name">Full Name:</label><span class="error">*</span><br>
-                <input type="text" name="name" id="name" placeholder="Full Name" value="<?php echo $_POST['name']; ?>"><br>
+                <input type="text" name="name" id="name" placeholder="Full Name"><br>
                 <label for="email">Email:</label><span class="error">*</span><br>
-                <input type="email" name="email" id="email" placeholder="Email Address" value="<?php echo $_POST['email']; ?>"><br>
+                <input type="email" name="email" id="email" placeholder="Email Address"><br>
                 <label for="phone-number">Phone Number:</label><span class="error">*</span><br>
-                <input type="tel" name="area-code" id="phone-number" placeholder="XXX" value="<?php echo $_POST['area-code']; ?>" maxlength="3"> -
-                <input type="tel" name="phone-part1" placeholder="XXX" value="<?php echo $_POST['phone-part1']; ?>" maxlength="3"> -
-                <input type="tel" name="phone-part2" placeholder="XXXX" value="<?php echo $_POST['phone-part2']; ?>" maxlength="4"><br>
+                <input type="tel" name="area-code" id="phone-number" placeholder="XXX" maxlength="3"> -
+                <input type="tel" name="phone-part1" placeholder="XXX" maxlength="3"> -
+                <input type="tel" name="phone-part2" placeholder="XXXX" maxlength="4"><br>
 
                 <!-- Response options -->
                 <label for="response-method">Choose preferred respond type:</label><span class="error">*</span><br>
@@ -190,8 +206,6 @@
                 <label>I want a call back</label><br>
                 <input type="submit" name="submit" value="Submit">
 
-                <!-- Let user know form has been submitted -->
-                <?php echo $confirmToUser; ?>
               </form>
             </section>
         </div>

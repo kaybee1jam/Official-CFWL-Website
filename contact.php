@@ -140,7 +140,7 @@
                     $response = NULL;
                     $errors .= $missingResponse;
                   }
-                  
+
                     //If there are errors
                     if ($errors) {
                       #print error message
@@ -190,19 +190,19 @@
                 <p class="error" style="padding-bottom: 10px;">* required field</p>
                 <!-- Text inputs -->
                 <label for="name">Full Name:</label><span class="error">*</span><br>
-                <input type="text" name="name" id="name" placeholder="Full Name"><br>
+                <input type="text" name="name" id="name" placeholder="Full Name" value="<?php if( isset($_POST['name']) ) echo $_POST['name']; ?>"><br>
                 <label for="email">Email:</label><span class="error">*</span><br>
-                <input type="email" name="email" id="email" placeholder="Email Address"><br>
+                <input type="email" name="email" id="email" placeholder="Email Address" value="<?php if( isset($_POST['email']) ) echo $_POST['email']; ?>"><br>
                 <label for="phone-number">Phone Number:</label><span class="error">*</span><br>
-                <input type="tel" name="area-code" id="phone-number" placeholder="XXX" maxlength="3"> -
-                <input type="tel" name="phone-part1" placeholder="XXX" maxlength="3"> -
-                <input type="tel" name="phone-part2" placeholder="XXXX" maxlength="4"><br>
+                <input type="tel" name="area-code" placeholder="XXX" maxlength="3" value="<?php if( isset($_POST['area-code']) ) echo $_POST['area-code']; ?>"> -
+                <input type="tel" name="phone-part1" placeholder="XXX" maxlength="3" value="<?php if( isset($_POST['phone-part1']) ) echo $_POST['phone-part1']; ?>"> -
+                <input type="tel" name="phone-part2" placeholder="XXXX" maxlength="4" value="<?php if( isset($_POST['phone-part2']) ) echo $_POST['phone-part2']; ?>"><br>
 
                 <!-- Response options -->
                 <label for="response-method">Choose preferred respond type:</label><span class="error">*</span><br>
-                <input type="radio" name="response-method" id="email-back" value="Wants an email back">
+                <input type="radio" name="response-method" id="email-back" value="Wants an email back" <?php if(isset($_POST['response-method']) && ($_POST['response-method'] == 'Wants an email back')) echo 'checked="checked" '; ?> >
                 <label>I want an email back</label>
-                <input type="radio" name="response-method" id="call-back" value="Wants a call back">
+                <input type="radio" name="response-method" id="call-back" value="Wants a call back" <?php if(isset($_POST['response-method']) && ($_POST['response-method'] == 'Wants a call back')) echo 'checked="checked" '; ?> >
                 <label>I want a call back</label><br>
                 <input type="submit" name="submit" value="Submit">
 

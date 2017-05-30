@@ -48,7 +48,7 @@
           <h2>Contact us for a quote</h2>
 
             <section id="form-box">
-              <h3>Fill out form for more info</h3>
+              <h3>Fill out this form for more information</h3>
 
               <!-- FORM VALIDAION -->
               <?php
@@ -223,7 +223,8 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>
-            <a href="https://www.facebook.com/Central-Florida-Wildlife-Removal-116540548711419/"><span id="facebook-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>
+          <a href="https://www.facebook.com/Central-Florida-Wildlife-Removal-116540548711419/"><span id="facebook-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>
+          <p id="company-number">407-555-5555</p>
         </div>
     </nav>
     </footer>

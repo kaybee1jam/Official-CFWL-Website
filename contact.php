@@ -1,6 +1,6 @@
 <?php ob_start();?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Kerri-Ann Bates">
@@ -187,7 +187,7 @@
               <!-- Contact form -->
               <form method="post">
 
-                <p class="error" style="padding-bottom: 10px;">* required field</p>
+                <p class="error" style="padding-bottom: 10px;">* Required field</p>
                 <!-- Text inputs -->
                 <label for="name">Full Name:</label><span class="error">*</span><br>
                 <input type="text" name="name" id="name" placeholder="Full Name" value="<?php if( isset($_POST['name']) ) echo $_POST['name']; ?>"><br>

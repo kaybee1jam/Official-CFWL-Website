@@ -5,7 +5,7 @@
 		"../scss/variables.scss"
 	],
 	"sourcesContent": [
-		"/* Colors*/\n$headerColor: #FDEF2A;\n$subHeadingsColor: #DE6515;\n$navFontColor: #3F4045;\n$defaultFontColor: #090809;\n$borderColor: #DEDEDE;\n"
+		"/* Colors*/\n$headerColor: #FDEF2A;\n$subHeadingsColor: #DE6515;\n$navFontColor: #3F4045;\n$defaultFontColor: #090809;\n$borderColor: #DEDEDE;\n$accentTealColor: #0D8E75;\n"
 	],
 	"mappings": "AAAA,WAAW",
 	"names": []

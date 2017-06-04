@@ -1,6 +1,6 @@
 <?php ob_start();?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="author" content="Kerri-Ann Bates">
@@ -16,13 +16,23 @@
     <!-- custom css -->
     <link rel="stylesheet" href="styles/css/main.css">
     <title>Central Florida Wildlife Removal | Contact</title>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-92673485-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
   </head>
   <body>
     <header>
         <div class="clearfix container">
           <div class="row clearfix">
             <div id="brand">
-              <img class="img-responsive" src="images/WR-logo.png" alt="">
+              <img class="img-responsive" src="images/WR-logo.png" alt="Central Florida Wildlife Removal Company Logo">
             </div>
             <div id="hamburger">
               <i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i>
@@ -148,7 +158,7 @@
                     } else {
                       //If no errors
                       #send email
-                      $to = "kaybee1jam@yahoo.com"; // this is your Email address
+                      $to = "mike@cfwrinc.com"; // this is your Email address
                       $from = $_POST['email']; // this is the sender's Email address
                       $message = "
                                   <html>
@@ -158,7 +168,7 @@
                                     <p><strong>$name</strong>, has submitted a quote request.</p>
                                     <p>Email address: <strong>$from</strong></p>
                                     <p>Phone number: <strong>$areaCode-$phonePart1-$phonePart2</strong></p>
-                                    <p>Response method chosen: <strong>$response</strong></p>
+                                    <p>Preferred response method chosen: <strong>$response</strong></p>
                                   </body>
                                   </html>
                                 ";
@@ -187,19 +197,19 @@
               <!-- Contact form -->
               <form method="post">
 
-                <p class="error" style="padding-bottom: 10px;">* required field</p>
+                <p class="error" style="padding-bottom: 10px;">* Required field</p>
                 <!-- Text inputs -->
-                <label for="name">Full Name:</label><span class="error">*</span><br>
+                <label for="name">Full Name:<span class="error">*</span></label><br>
                 <input type="text" name="name" id="name" placeholder="Full Name" value="<?php if( isset($_POST['name']) ) echo $_POST['name']; ?>"><br>
-                <label for="email">Email:</label><span class="error">*</span><br>
+                <label for="email">Email:<span class="error">*</span></label><br>
                 <input type="email" name="email" id="email" placeholder="Email Address" value="<?php if( isset($_POST['email']) ) echo $_POST['email']; ?>"><br>
-                <label for="phone-number">Phone Number:</label><span class="error">*</span><br>
+                <label for="phone-number">Phone Number:<span class="error">*</span></label><br>
                 <input type="tel" name="area-code" placeholder="XXX" maxlength="3" value="<?php if( isset($_POST['area-code']) ) echo $_POST['area-code']; ?>"> -
                 <input type="tel" name="phone-part1" placeholder="XXX" maxlength="3" value="<?php if( isset($_POST['phone-part1']) ) echo $_POST['phone-part1']; ?>"> -
                 <input type="tel" name="phone-part2" placeholder="XXXX" maxlength="4" value="<?php if( isset($_POST['phone-part2']) ) echo $_POST['phone-part2']; ?>"><br>
 
                 <!-- Response options -->
-                <label for="response-method">Choose preferred respond type:</label><span class="error">*</span><br>
+                <label for="response-method">Choose preferred respond type:<span class="error">*</span></label><br>
                 <input type="radio" name="response-method" id="email-back" value="Wants an email back" <?php if(isset($_POST['response-method']) && ($_POST['response-method'] == 'Wants an email back')) echo 'checked="checked" '; ?> >
                 <label>I want an email back</label>
                 <input type="radio" name="response-method" id="call-back" value="Wants a call back" <?php if(isset($_POST['response-method']) && ($_POST['response-method'] == 'Wants a call back')) echo 'checked="checked" '; ?> >
@@ -223,8 +233,7 @@
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>
-          <a href="https://www.facebook.com/Central-Florida-Wildlife-Removal-116540548711419/"><span id="facebook-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>
-          <p id="company-number">407-555-5555</p>
+          <a href="https://www.facebook.com/Central-Florida-Wildlife-Removal-116540548711419/" target="_blank"><span id="facebook-icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span></a>
         </div>
     </nav>
     </footer>
